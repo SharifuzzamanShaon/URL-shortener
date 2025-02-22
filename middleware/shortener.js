@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 const Shortener = require("../model/shortener.model");
 const generateShortUrl = () => {
-  return crypto.randomBytes(3).toString("hex");
+  return crypto.randomBytes(2).toString("hex");
 };
 
 const compressUrl = async (originalUrl) => {
