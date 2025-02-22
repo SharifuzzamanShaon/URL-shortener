@@ -9,7 +9,8 @@ const compressUrl = async (originalUrl) => {
     const shortUrl = generateShortUrl();
     const shortener = new Shortener({ originalUrl, shortUrl });
     await shortener.save();
-    return shortUrl;
+    const shortUrlFull = `${process.env.BASE_URL}/${shortUrl}`;
+    return shortUrlFull;
   } catch (error) {
     throw new Error("Failed to compress URL");
   }
