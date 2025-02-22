@@ -69,8 +69,23 @@
 
         <% if (shortUrl) { %>
             <h2>🎉 Your Shortened URL is Ready!</h2>
-            <a href="<%= shortUrl %>" class="short-url" target="_blank"><%= shortUrl %></a>
+            <a href="<%= shortUrl %>" class="short-url" target="_blank" id="shortUrl"><%= shortUrl %></a>
+            
+            <!-- Copy Button -->
+            <button onclick="copyToClipboard()">Copy</button>
+        
+            <script>
+                function copyToClipboard() {
+                    const shortUrl = document.getElementById("shortUrl").textContent;
+                    navigator.clipboard.writeText(shortUrl).then(() => {
+                        alert("Copied to clipboard!");
+                    }).catch(err => {
+                        console.error("Failed to copy: ", err);
+                    });
+                }
+            </script>
         <% } %>
+        
 
         <div class="footer">
             <p>Thank you for using <strong>Shortly</strong>! 🚀</p>
