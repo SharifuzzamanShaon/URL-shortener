@@ -24,20 +24,16 @@ app.get("/", (req, res) => {
 app.post("/", async (req, res) => {
   try {
     const { originalUrl } = req.body;
-    console.log("User Input:", originalUrl);
     const shortUrl = await compressUrl(originalUrl);
     res.render("index", { shortUrl, originalUrl });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
+    // res.render("index", { shortUrl: null, originalUrl: "", error });
   }
 });
 
 app.use("/", router);
 
-app.get("/test", async (req, res) => {
-  const shortUrl = await compressUrl("https://www.google.com");
-  res.send(shortUrl);
-});
 
 app.use((error, req, res, next) => {
   const message = error.message ? error.message : "Server Error Occured";
