@@ -21,19 +21,17 @@ app.get("/", (req, res) => {
   res.render("index", { shortUrl: null, originalUrl: "" });
 });
 
-app.post("/", async (req, res) => {
+app.post("/", async (req, res, next) => {
   try {
     const { originalUrl } = req.body;
     const shortUrl = await compressUrl(originalUrl);
     res.render("index", { shortUrl, originalUrl });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-    // res.render("index", { shortUrl: null, originalUrl: "", error });
+    next(error);
   }
 });
 
 app.use("/", router);
-
 
 app.use((error, req, res, next) => {
   const message = error.message ? error.message : "Server Error Occured";
