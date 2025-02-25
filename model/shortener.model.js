@@ -4,7 +4,7 @@ const shortenerSchema = new mongoose.Schema({
     originalUrl: {
         type: String,
         required: true,
-        unique: true
+        // unique: true
     },
     shortUrl: {
         type: String,

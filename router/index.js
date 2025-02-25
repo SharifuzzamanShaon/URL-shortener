@@ -3,4 +3,6 @@ const { redirectToOrginal } = require("../controller/redirectToOrginal");
 
 router.get("/:shortUrl", redirectToOrginal);
 
+
+
 module.exports = router;
