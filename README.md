@@ -17,7 +17,6 @@ A simple URL Shortener built using **Node.js**, **Express.js**, and **MongoDB**.
 - **Express.js** - Web framework for Node.js
 - **MongoDB & Mongoose** - Database and ORM for storing shortened URLs
 - **EJS** - Templating engine for rendering views
-- **Dotenv** - Environment variable management
 
 ## Installation
 
