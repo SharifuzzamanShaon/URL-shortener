@@ -25,10 +25,6 @@ app.get("/", (req, res) => {
 app.post("/", async (req, res, next) => {
   try {
     const { originalUrl } = req.body;
-    if (isExist) {
-      console.log("from the redis cache");
-      return res.render("index", { shortUrl: isExist, originalUrl });
-    }
     const shortUrl = await compressUrl(originalUrl, next);
     logger.info(`Short URL: ${shortUrl}`);
     return res.render("index", { shortUrl, originalUrl });
