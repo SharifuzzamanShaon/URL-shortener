@@ -20,7 +20,6 @@ app.set("views", path.join(__dirname, "view"));
 
 app.get("/", (req, res) => {
   res.render("index", { shortUrl: null, originalUrl: "" });
-  logger.info("Index page rendered");
 });
 
 app.post("/", rateLimitMiddleware, async (req, res, next) => {
