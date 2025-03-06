@@ -6,6 +6,7 @@ const router = require("./router/index");
 const { connectDB } = require("./configDB/connectDB");
 const { compressUrl } = require("./middleware/shortener");
 const logger = require("./logger");
+const rateLimitMiddleware = require("./middleware/rateLimiter");
 require("dotenv").config();
 app.use(bodyParser.json());
 
@@ -22,7 +23,7 @@ app.get("/", (req, res) => {
   logger.info("Index page rendered");
 });
 
-app.post("/", async (req, res, next) => {
+app.post("/", rateLimitMiddleware, async (req, res, next) => {
   try {
     const { originalUrl } = req.body;
     const shortUrl = await compressUrl(originalUrl, next);
@@ -35,7 +36,6 @@ app.post("/", async (req, res, next) => {
 });
 
 app.use("/", router);
-
 
 app.use((error, req, res, next) => {
   const message = error.message ? error.message : "Server Error Occured";
