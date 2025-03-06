@@ -1,7 +1,7 @@
 const rateLimitStorage = new Map();
 
 const rateLimitMiddleware = (req, res, next) => {
-    const ip = req.headers['x-forwarded-for'] || `${req.ip}_${req.body.username}`; // Get user IP address
+    const ip = req.headers['x-forwarded-for'] || `${req.ip}_${req.body.username}`; // user IP address
     const windowMs = 60 * 1000; // 1 minute window
     const limit = 10; // Max requests per window
     console.log(ip);
