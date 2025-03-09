@@ -1,6 +1,6 @@
 const Shortener = require("../model/shortener.model");
 
-const redirectToOrginal = async (req, res) => {
+const redirectToOrginal = async (req, res, next) => {
   try {
     const { shortUrl } = req.params;
     const getUrlFor = `${process.env.BASE_URL}/${shortUrl}`;
@@ -10,7 +10,7 @@ const redirectToOrginal = async (req, res) => {
     }
     res.redirect(shortener.originalUrl);
   } catch (error) {
-    throw new Error("Failed to redirect to original URL");
+    next(error);
   }
 };
 
