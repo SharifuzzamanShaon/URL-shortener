@@ -1,96 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shortened URL | Shortly</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .container {
-            width: 100%;
-            max-width: 500px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            font-size: 16px;
-            color: #555;
-        }
-        .short-url {
-            display: inline-block;
-            background: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #777;
-        }
-        input {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #535353, #ffffff);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Header */
+h1 {
+  color: #2e7d32;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Input Field */
+input {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  background: #2e7d32;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #1b5e20;
+}
+
+/* Shortened URL Display */
+.short-url {
+    display: inline-block;
+  color: #1a0dab;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  word-break: break-word;
+}
+
+
+/* Footer */
+.footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>🔗 Enter a URL to Shorten</h1>
-        <form action="/" method="POST">
-            <input type="text" name="originalUrl" placeholder="Enter your URL" required>
-            <button type="submit">Make Short URL</button>
-        </form>
+      <h1>🔗 Enter a URL to Shorten</h1>
+      <form action="/" method="POST">
+        <input
+          type="text"
+          name="originalUrl"
+          placeholder="Enter your URL"
+          required
+        />
+        <button type="submit"> SHORT IT</button>
+      </form>
 
-        <% if (shortUrl) { %>
-            <h2>🎉 Your Shortened URL is Ready!</h2>
-            <a href="<%= shortUrl %>" class="short-url" target="_blank" id="shortUrl"><%= shortUrl %></a>
-            
-            <!-- Copy Button -->
-            <button onclick="copyToClipboard()">Copy</button>
-        
-            <script>
-                function copyToClipboard() {
-                    const shortUrl = document.getElementById("shortUrl").textContent;
-                    navigator.clipboard.writeText(shortUrl).then(() => {
-                        alert("Copied to clipboard!");
-                    }).catch(err => {
-                        console.error("Failed to copy: ", err);
-                    });
-                }
-            </script>
-        <% } %>
-        
+      <% if (shortUrl) { %>
+      <h2>🎉 Your Shortened URL is Ready!</h2>
+      <a href="<%= shortUrl %>" class="short-url" target="_blank" id="shortUrl"
+        ><%= shortUrl %></a
+      >
 
-        <div class="footer">
-            <p>Thank you for using <strong>Shortly</strong>! 🚀</p>
-            <p>If you did not request this, please ignore this message.</p>
-        </div>
+      <!-- Copy Button -->
+      <button onclick="copyToClipboard()">Copy</button>
+
+      <script>
+        function copyToClipboard() {
+          const shortUrl = document.getElementById("shortUrl").textContent;
+          navigator.clipboard
+            .writeText(shortUrl)
+            .then(() => {
+              alert("Copied to clipboard!");
+            })
+            .catch((err) => {
+              console.error("Failed to copy: ", err);
+            });
+        }
+      </script>
+      <% } %>
+
+      <div class="footer">
+        <p>Thank you for using <strong>Shortly</strong>! 🚀</p>
+
+      </div>
     </div>
-</body>
+  </body>
 </html>
