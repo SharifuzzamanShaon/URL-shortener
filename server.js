@@ -20,7 +20,6 @@ app.set("views", path.join(__dirname, "view"));
 
 app.get("/", (req, res) => {
   res.render("index", { shortUrl: null, originalUrl: "" });
-  logger.info("Index page rendered");
 });
 
 app.post("/", rateLimitMiddleware, async (req, res, next) => {
@@ -40,7 +39,7 @@ app.use("/", router);
 app.use((error, req, res, next) => {
   const message = error.message ? error.message : "Server Error Occured";
   const status = error.status ? error.status : 500;
-  res.status(status).json({ success: false, message });
+ return res.render("error", {goBack : process.env.BASE_URL || "/", message, status})
 });
 
 const port = 5003;
