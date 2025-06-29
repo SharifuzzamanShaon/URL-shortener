@@ -27,5 +27,5 @@ cd url-shortener
 ```
 ### Docker image pull:
 ```
-docker pull shaon20/url-shortener
-docker run -p 5003:5003 shaon20/url-shortener
+docker pull sharifuzzaman/u-short:v-1
+docker run -d -p 5003:5003 --name url-1 sharifuzzaman/u-short:v-1
