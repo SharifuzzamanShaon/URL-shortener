@@ -24,3 +24,8 @@ A simple URL Shortener built using **Node.js**, **Express.js**, and **MongoDB**.
 ```sh
 git clone https://github.com/yourusername/url-shortener.git
 cd url-shortener
+```
+### Docker image pull:
+```
+docker pull shaon20/url-shortener
+docker run -p 5003:5003 shaon20/url-shortener
