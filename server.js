@@ -45,7 +45,8 @@ app.use((error, req, res, next) => {
 const port = 5003;
 app.listen(port, '0.0.0.0', async () => {
   console.log(`server running on http://0.0.0.0:${port}`);
-  logger.info(`server running on http://0.0.0.0:${port}`);
+  // console.log(`server running on http://localhost:${port}`);
+  // logger.info(`server running on http://localhost:${port}`);
   await connectDB();
 });
 

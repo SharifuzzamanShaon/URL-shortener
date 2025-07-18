@@ -1,151 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shortened URL | Shortly</title>
-    <style>
-/* General Styles */
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #535353, #ffffff);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: #333;
-}
-
-/* Container */
-.container {
-  width: 100%;
-  max-width: 500px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Header */
-h1 {
-  color: #2e7d32;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-/* Input Field */
-input {
-  width: calc(100% - 20px);
-  padding: 12px;
-  margin: 10px 0;
-  border: 2px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
-}
-
-input:focus {
-  border-color: #4caf50;
-  outline: none;
-}
-
-/* Buttons */
-button {
-  background: #2e7d32;
-  color: white;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background: #1b5e20;
-}
-
-/* Shortened URL Display */
-.short-url {
-    display: inline-block;
-  color: #1a0dab;
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: underline;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  word-break: break-word;
-}
-
-
-/* Footer */
-.footer {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #666;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>🔗 Enter a URL to Shorten</h1>
-      <form action="/" method="POST">
-        <input
-          type="text"
-          name="originalUrl"
-          placeholder="Enter your URL"
-          required
-        />
-        <button type="submit"> SHORT IT</button>
-      </form>
-
-      <% if (shortUrl) { %>
-      <h2>🎉 Your Shortened URL is Ready!</h2>
-      <a href="<%= shortUrl %>" class="short-url" target="_blank" id="shortUrl"
-        ><%= shortUrl %></a
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortner | Professional URL Shortener</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-sans">
+  <div class="container bg-white max-w-lg w-full mx-4 p-8 rounded-2xl shadow-lg fade-in">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Shorten Your URL</h1>
+    <form action="/" method="POST" class="space-y-4">
+      <input
+        type="text"
+        name="originalUrl"
+        placeholder="Enter your URL"
+        required
+        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+      />
+      <button
+        type="submit"
+        class="w-full bg-blue-600 text-white p-3 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
       >
+        Make Short
+      </button>
+    </form>
 
-      <!-- Copy Button -->
-      <button onclick="copyToClipboard()">Copy</button>
-
-      <script>
-        function copyToClipboard() {
-          const shortUrl = document.getElementById("shortUrl").textContent;
-          navigator.clipboard
-            .writeText(shortUrl)
-            .then(() => {
-              alert("Copied to clipboard!");
-            })
-            .catch((err) => {
-              console.error("Failed to copy: ", err);
-            });
-        }
-      </script>
-      <% } %>
-
-      <div class="footer">
-        <p>Thank you for using <strong>Shortly</strong>! 🚀</p>
-
-      </div>
+    <% if (shortUrl) { %>
+    <div class="mt-6 text-center">
+      <h2 class="text-lg font-semibold text-gray-700 mb-2">Your Shortened URL</h2>
+      <a
+        href="<%= shortUrl %>"
+        class="text-blue-600 font-medium text-lg hover:underline break-all"
+        target="_blank"
+        id="shortUrl"
+      >
+        <%= shortUrl %>
+      </a>
+      <button
+        onclick="copyToClipboard()"
+        class="mt-4 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition duration-200"
+      >
+        Copy to Clipboard
+      </button>
     </div>
-  </body>
+
+    <script>
+      function copyToClipboard() {
+        const shortUrl = document.getElementById("shortUrl").textContent;
+        navigator.clipboard
+          .writeText(shortUrl)
+          .then(() => {
+            alert("URL copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err);
+          });
+      }
+    </script>
+    <% } %>
+
+    
+  </div>
+
+  <footer class="absolute bottom-0 w-full bg-gray-800 text-white text-center py-4">
+    <p class="text-sm">
+      © 2025 Shortly. All rights reserved by <strong>Sharifuzzaman Hasan</strong>.
+    </p>
+  </footer>
+</body>
 </html>

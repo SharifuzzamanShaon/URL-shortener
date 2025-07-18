@@ -466,3 +466,5 @@
 {"level":"info","message":"Short URL: http://localhost:5003/vhuuj","service":"url-shortener"}
 {"level":"info","message":"server running on http://localhost:5003","service":"url-shortener"}
 {"level":"info","message":"server running on http://localhost:5003","service":"url-shortener"}
+{"level":"info","message":"server running on http://localhost:5004","service":"url-shortener"}
+{"level":"info","message":"server running on http://localhost:5004","service":"url-shortener"}
